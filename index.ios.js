@@ -1,5 +1,5 @@
 'use strict';
 import { AppRegistry } from 'react-native';
-import IHeartRedCaps from './IHeartRedCaps';
+import IHeartRedCaps from './app/index';
 
 AppRegistry.registerComponent('iheartIter2', () => IHeartRedCaps);

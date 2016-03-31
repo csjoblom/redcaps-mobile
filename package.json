@@ -6,14 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "@exponent/react-native-navigator": "^0.4.2",
     "eslint-plugin-react": "^4.2.2",
+    "moment": "^2.12.0",
     "react-native": "^0.20.0",
     "react-native-button": "^1.4.2",
-    "react-native-gifted-form": "0.0.6",
-    "react-native-navbar": "^1.2.1",
-    "react-native-router-flux": "^2.2.7",
-    "react-redux": "^4.4.0",
-    "redux": "^3.3.1"
+    "react-native-gifted-form": "0.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0",

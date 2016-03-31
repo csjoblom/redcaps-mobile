@@ -2,63 +2,58 @@
 import React, {
   AppRegistry,
   Component,
-  Navigator,
+  Image,
   StyleSheet,
   View
 } from 'react-native';
-import {
-  Router,
-  Route,
-  Schema,
-  Actions,
-  Animations,
-  TabBar
-} from 'react-native-router-flux';
 import Button from 'react-native-button';
+import {getReportRoute} from '../router';
 
 export default class Home extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Image source={require('../assets/background.png')} style={styles.mainContainer}>
+        <Image
+                style={styles.logo}
+                source={require('../assets/guideslogo400.png')}
+            />
         <Button
-          onPress={()=>Actions.report({data:"CustomReportData", title:'Report'})}
+          onPress={() => {
+            // Get a route object from the router
+            let route = getReportRoute();
+            // `navigator` is passed into your scene component when you have
+            // implemented getSceneClass in your route
+            this.props.navigator.push(route);
+          }}
           containerStyle={styles.buttonContainer}
           style={styles.button}
         >
           REPORT
         </Button>
         <Button
-          onPress={Actions.status}
           style={styles.button}
           containerStyle={styles.buttonContainer}
         >
           STATUS
         </Button>
         <Button
-          onPress={Actions.signup}
           style={styles.button}
           containerStyle={styles.buttonContainer}
         >
           SIGNUP
         </Button>
-      </View>
+      </Image>
     );
   }
 }
 
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  header: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    padding: 10
   },
   buttonContainer: {
     backgroundColor: '#F82040',
@@ -71,5 +66,10 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'white',
     textAlign: 'center'
+  },
+  logo: {
+    width: 268,
+    height: 335,
+    marginBottom: 20
   }
 });
