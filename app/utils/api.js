@@ -18,7 +18,7 @@ export function postReport(report) {
     'Note': report.note || '',
     'Tos': report.tos ? 1 : 0
   };
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     headers: headers
   })

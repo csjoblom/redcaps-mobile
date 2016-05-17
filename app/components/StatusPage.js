@@ -4,7 +4,6 @@ import Button from 'react-native-button';
 export default class StatusPage extends Component {
   constructor(props, context) {
     super(props,context);
-    console.log(props);
     this.prettyReport = JSON.stringify(this.props.report);
     this.handleTryAgain = this.handleTryAgain.bind(this);
     this.handleComplete = this.handleComplete.bind(this);
@@ -28,6 +27,7 @@ export default class StatusPage extends Component {
           containerStyle={styles.buttonContainer}
           style={styles.button}
         >Submit Another Report</Button>
+      <Text style={styles.reportText}>{this.prettyReport}</Text>
 
       </ScrollView>
     )
@@ -57,5 +57,9 @@ const styles = StyleSheet.create({
       margin: 12,
       fontSize: 22,
       textAlign: 'center'
-    }
+    },
+    reportText: {
+      marginTop: 48,
+      fontSize: 8
+    },
 });
