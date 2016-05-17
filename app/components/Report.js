@@ -107,7 +107,7 @@ export default class Report extends Component {
                     <GiftedForm.TextInputWidget name='businessName' title='Business' placeholder='Business Name' clearButtonMode='while-editing'/>
                     <GiftedForm.TextInputWidget name='businessAddress' title='Address' placeholder='Business Address' clearButtonMode='while-editing'/>
                     <GiftedForm.SeparatorWidget/>
-                    <GiftedForm.TextInputWidget name='primaryContact' title='Primary' placeholder='Primary Contact' clearButtonMode='while-editing' />
+                    <GiftedForm.TextInputWidget name='primaryContact' title='Contact' placeholder='Primary Contact' clearButtonMode='while-editing' />
                     <GiftedForm.TextInputWidget name='primaryPhone' title='Phone' placeholder='541-522-5333' clearButtonMode='while-editing' />
                     <GiftedForm.TextInputWidget name='email' title='Email' placeholder='person@email.com' keyboardType='email-address' clearButtonMode='while-editing' />
                     <GiftedForm.SeparatorWidget/>
