@@ -48,14 +48,46 @@ export default class Report extends Component {
       GiftedFormManager.reset('reportForm');
     }
 
-    handleSubmit(values) {
+    handleSubmit(values,postSubmit) {
       const report = {...this.state.report, ...values};
 
       this.setState({ report });
 
       console.log(report);
-      postReport(report);
-      this.props.navigator.push(getStatusPage(report));
+      const apiKey = '031yxhmIDEP1qBZ3lvaH';
+      const url = 'http://www.downtowneugene.com/wp-json/wp_red_caps/v1/incidents';
+      const headers = {
+        'Apikey': apiKey,
+        'Created': report.created || 0,
+        'Updated': report.updated || 0,
+        'Incidenttype': report.incident || '',
+        'Incidentyseverity': report.severity || '',
+        'Latitude': report.lat || 0,
+        'Longitude': report.lng || 0,
+        'Businessname': report.businessName || '',
+        'Businessaddress': report.businessAddress || '',
+        'Policecontacted': report.policeContacted || 0,
+        'Primarycontact': report.primaryContact || '',
+        'Primaryphone': report.primaryPhone || '',
+        'Primaryemail': report.primaryEmail || '',
+        'Note': report.note || '',
+        'Tos': report.tos ? 1 : 0
+      };
+      fetch(url, {
+        method: 'POST',
+        headers: headers
+      })
+      .then((response) => response.text())
+      .then((responseText) => {
+        console.log(responseText);
+        GiftedFormManager.reset('reportForm');
+        postSubmit();
+        this.props.navigator.push(getStatusPage(report));
+      })
+      .catch((error) => {
+        postSubmit([error]);
+      });
+
     }
 
     render() {
@@ -119,7 +151,7 @@ export default class Report extends Component {
                         submitButton: {
                             backgroundColor: '#F82040'
                         }
-                    }} onSubmit= { (isValid, values, validationResults, postSubmit = null, modalNavigator = null) => { if (isValid === true) { /* prepare object */ values.incident = values.incident[0]; if(values.severity) {values.severity = values.severity[0]}; this.handleSubmit(values);/* Implement the request to your server using values variable ** then you can do: ** postSubmit(); ** postSubmit(['An error occurred, please try again']); disable the loader and display an error message ** postSubmit(['Contact already taken', 'Email already taken']); disable the loader and display an error message ** GiftedFormManager.reset('signupForm'); clear the states of the form manually. 'signupForm' is the formName used */ } } }/>
+                    }} onSubmit= { (isValid, values, validationResults, postSubmit = null, modalNavigator = null) => { if (isValid === true) { /* prepare object */ values.incident = values.incident[0]; if(values.severity) {values.severity = values.severity[0]}; this.handleSubmit(values,postSubmit);/* Implement the request to your server using values variable ** then you can do: ** postSubmit(); ** postSubmit(['An error occurred, please try again']); disable the loader and display an error message ** postSubmit(['Contact already taken', 'Email already taken']); disable the loader and display an error message ** GiftedFormManager.reset('signupForm'); clear the states of the form manually. 'signupForm' is the formName used */ } } }/>
                     <GiftedForm.NoticeWidget title='By submitting this report, you agree to the Terms of Service and Privacy Policity.'/>
                     <GiftedForm.HiddenWidget name='tos' value={true}/>
                 </GiftedForm>

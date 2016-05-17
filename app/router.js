@@ -56,13 +56,13 @@ export function getReportRoute() {
 
         // Render the view to display on the right side of the navigation bar. It
         // is typically a button but doesn't have to be.
-        renderRightButton() {
-          return (
-            <Button style={styles.button} onPress={() => { console.log('Tapped right button'); }}>
-              Dispatch
-            </Button>
-          );
-        },
+        // renderRightButton() {
+        //   return (
+        //     <Button style={styles.button} onPress={() => { console.log('Tapped right button'); }}>
+        //       Dispatch
+        //     </Button>
+        //   );
+        // },
     };
 };
 

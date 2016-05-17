@@ -1,8 +1,6 @@
 import React, {AppRegistry, Component, StyleSheet, Text, ScrollView, View} from 'react-native';
 import Button from 'react-native-button';
 
-import {getReportRoute} from '../router';
-
 export default class StatusPage extends Component {
   constructor(props, context) {
     super(props,context);
@@ -25,9 +23,7 @@ export default class StatusPage extends Component {
       <ScrollView style={styles.container}>
         <Text style={styles.text}>Your report has been been submitted.</Text>
         <Button onPress= { () => {
-            let route = getReportRoute();
-            this.props.navigator.push(route);
-
+            this.props.navigator.pop();
           } }
           containerStyle={styles.buttonContainer}
           style={styles.button}
