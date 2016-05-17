@@ -5,7 +5,7 @@ import {GiftedForm, GiftedFormManager} from 'react-native-gifted-form';
 import { getStatusPage } from '../router';
 
 import moment from 'moment';
-import api from '../utils/api';
+import {postReport} from '../utils/api';
 
 export default class Report extends Component {
     constructor(props, context) {
@@ -54,8 +54,8 @@ export default class Report extends Component {
       this.setState({ report });
 
       console.log(report);
-      api.postReport(report);
-      //this.props.navigator.push(getStatusPage(report));
+      postReport(report);
+      this.props.navigator.push(getStatusPage(report));
     }
 
     render() {

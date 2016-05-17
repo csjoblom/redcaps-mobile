@@ -68,7 +68,7 @@ export function getReportRoute() {
 
 export function getStatusPage(report) {
   return {
-    hideNavBar: false,
+    hideNavBar: true,
 
     renderScene(navigator) {
         return <StatusPage navigator={navigator} report={report} />;
@@ -90,7 +90,7 @@ export function getStatusPage(report) {
     // This route's title is displayed next to the back button when you push
     // a new route on top of this one.
     getTitle() {
-        return 'Report Status';
+        return '';
     },
 
     report: report,

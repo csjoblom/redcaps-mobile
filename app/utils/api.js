@@ -1,26 +1,32 @@
-var api = {
-    postReport(report){
-        var apiKey = `031yxhmIDEP1qBZ3lvaH`;
-        var notes = JSON.stringify(report);
-        var url = `http://www.downtowneugene.com/wp-json/wp_red_caps/v1/incident`;
-        return fetch(url, {
-            method: 'POST',
-            headers: {
-                'apikey': apiKey,
-                'issue_id': '',
-                'reporter_id': '3',
-                'report_time': Date.now(),
-                'impact': '4',
-                'lat': '44.049809',
-                'lng': '-123.092764',
-                'type': 'vagrancy',
-                'business_name': 'Sizzle Pie',
-                'notes': notes,
-                'images': '',
-                'police_contacted': '0'
-            }
-        });
-    }
-};
-
-module.exports = api;
+export function postReport(report) {
+  const apiKey = '031yxhmIDEP1qBZ3lvaH';
+  const url = 'http://www.downtowneugene.com/wp-json/wp_red_caps/v1/incidents';
+  const headers = {
+    'Apikey': apiKey,
+    'Created': report.created || 0,
+    'Updated': report.updated || 0,
+    'Incidenttype': report.incident || '',
+    'Incidentyseverity': report.severity || '',
+    'Latitude': report.lat || 0,
+    'Longitude': report.lng || 0,
+    'Businessname': report.businessName || '',
+    'Businessaddress': report.businessAddress || '',
+    'policecontacted': report.policeContacted || 0,
+    'Primarycontact': report.primaryContact || '',
+    'Primaryphone': report.primaryPhone || '',
+    'Primaryemail': report.primaryEmail || '',
+    'Note': report.note || '',
+    'Tos': report.tos ? 1 : 0
+  };
+  fetch(url, {
+    method: 'POST',
+    headers: headers
+  })
+  .then((response) => response.text())
+  .then((responseText) => {
+    console.log(responseText);
+  })
+  .catch((error) => {
+    console.warn(error);
+  });
+}
