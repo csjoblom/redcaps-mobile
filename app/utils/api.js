@@ -11,7 +11,7 @@ export function postReport(report) {
     'Longitude': report.lng || 0,
     'Businessname': report.businessName || '',
     'Businessaddress': report.businessAddress || '',
-    'policecontacted': report.policeContacted || 0,
+    'Policecontacted': report.policeContacted || 0,
     'Primarycontact': report.primaryContact || '',
     'Primaryphone': report.primaryPhone || '',
     'Primaryemail': report.primaryEmail || '',
